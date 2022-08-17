@@ -76,5 +76,7 @@ func (s *Socket) Read() ([]byte, error) {
 }
 
 func (s *Socket) Close() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	s.c.Close()
 }
